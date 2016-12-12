@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetSureFileUploadModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PetSureFileUploadContext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="FileUploads" EntityType="PetSureFileUploadModel.FileUploads" />
+    <EntitySet Name="Pets" EntityType="PetSureFileUploadModel.Pets" />
+    <AssociationSet Name="FK_FileUploads_Pets" Association="PetSureFileUploadModel.FK_FileUploads_Pets">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="FileUploads" EntitySet="FileUploads" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FileUploads">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PetID" Type="Int64" Nullable="false" />
+    <Property Name="FileType" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="FileName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="OriginalFileName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Pets" Relationship="PetSureFileUploadModel.FK_FileUploads_Pets" FromRole="FileUploads" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="PetID" />
+    </Key>
+    <Property Name="PetID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Enable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FileUploads" Relationship="PetSureFileUploadModel.FK_FileUploads_Pets" FromRole="Pets" ToRole="FileUploads" />
+  </EntityType>
+  <Association Name="FK_FileUploads_Pets">
+    <End Role="Pets" Type="PetSureFileUploadModel.Pets" Multiplicity="1" />
+    <End Role="FileUploads" Type="PetSureFileUploadModel.FileUploads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="PetID" />
+      </Principal>
+      <Dependent Role="FileUploads">
+        <PropertyRef Name="PetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,29 @@
+﻿<div>
+    <h3>
+        <img src="/Images/logo.png" />
+    </h3>
+    <h3>Make a Claim</h3>
+
+    <div class="row" ng-init="initialize()">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="col-sm-2">Make a claim for your pet:</div>
+            <div class="col-sm-10">
+                <select ng-model="fileDTO.PetID" ng-options="opt.PetID as opt.Name for opt in names"></select>
+            </div>
+            <hr />
+            <div class="col-sm-4">
+                <hr />
+                <div style="margin-bottom: 10%;">
+                    Attach {{blah}} invoice for us here
+                </div>
+                <br />
+                <input type="file" ng-file-select="myFile" />
+                <div style="margin-top: 10%;">
+                    <button type="button" class="btn btn-primary" ng-click="uploadFile()">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

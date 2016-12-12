@@ -1,0 +1,5 @@
+C:\Users\Katherina Ann Santos\AngularFileUpload\PetSureFileUpload.Views\bin\PetSureFileUpload.Views.dll
+C:\Users\Katherina Ann Santos\AngularFileUpload\PetSureFileUpload.Views\bin\PetSureFileUpload.Views.pdb
+C:\Users\Katherina Ann Santos\AngularFileUpload\PetSureFileUpload.Views\obj\Debug\PetSureFileUpload.Views.dll
+C:\Users\Katherina Ann Santos\AngularFileUpload\PetSureFileUpload.Views\obj\Debug\PetSureFileUpload.Views.pdb
+C:\Users\Katherina Ann Santos\AngularFileUpload\PetSureFileUpload.Views\obj\Debug\PetSureFileUpload.Views.csprojResolveAssemblyReference.cache

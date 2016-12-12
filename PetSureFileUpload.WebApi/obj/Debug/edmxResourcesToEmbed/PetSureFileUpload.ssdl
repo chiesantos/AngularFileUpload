@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetSureFileUploadModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PetSureFileUploadModelStoreContainer">
+    <EntitySet Name="FileUploads" EntityType="PetSureFileUploadModel.Store.FileUploads" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pets" EntityType="PetSureFileUploadModel.Store.Pets" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_FileUploads_Pets" Association="PetSureFileUploadModel.Store.FK_FileUploads_Pets">
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="FileUploads" EntitySet="FileUploads" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FileUploads">
+    <Key>
+      <PropertyRef Name="FileID" />
+    </Key>
+    <Property Name="FileID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PetID" Type="bigint" Nullable="false" />
+    <Property Name="FileType" Type="nchar" MaxLength="255" />
+    <Property Name="FileName" Type="varchar(max)" />
+    <Property Name="OriginalFileName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="PetID" />
+    </Key>
+    <Property Name="PetID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Enable" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FileUploads_Pets">
+    <End Role="Pets" Type="PetSureFileUploadModel.Store.Pets" Multiplicity="1" />
+    <End Role="FileUploads" Type="PetSureFileUploadModel.Store.FileUploads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pets">
+        <PropertyRef Name="PetID" />
+      </Principal>
+      <Dependent Role="FileUploads">
+        <PropertyRef Name="PetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

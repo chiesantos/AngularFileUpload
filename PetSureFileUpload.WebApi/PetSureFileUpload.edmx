@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PetSureFileUploadModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PetSureFileUploadModelStoreContainer">
+          <EntitySet Name="FileUploads" EntityType="PetSureFileUploadModel.Store.FileUploads" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Pets" EntityType="PetSureFileUploadModel.Store.Pets" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_FileUploads_Pets" Association="PetSureFileUploadModel.Store.FK_FileUploads_Pets">
+            <End Role="Pets" EntitySet="Pets" />
+            <End Role="FileUploads" EntitySet="FileUploads" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FileUploads">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PetID" Type="bigint" Nullable="false" />
+          <Property Name="FileType" Type="nchar" MaxLength="255" />
+          <Property Name="FileName" Type="varchar(max)" />
+          <Property Name="OriginalFileName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Pets">
+          <Key>
+            <PropertyRef Name="PetID" />
+          </Key>
+          <Property Name="PetID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Enable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FileUploads_Pets">
+          <End Role="Pets" Type="PetSureFileUploadModel.Store.Pets" Multiplicity="1" />
+          <End Role="FileUploads" Type="PetSureFileUploadModel.Store.FileUploads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="FileUploads">
+              <PropertyRef Name="PetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetSureFileUploadModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PetSureFileUploadContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="FileUploads" EntityType="PetSureFileUploadModel.FileUploads" />
+          <EntitySet Name="Pets" EntityType="PetSureFileUploadModel.Pets" />
+          <AssociationSet Name="FK_FileUploads_Pets" Association="PetSureFileUploadModel.FK_FileUploads_Pets">
+            <End Role="Pets" EntitySet="Pets" />
+            <End Role="FileUploads" EntitySet="FileUploads" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FileUploads">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PetID" Type="Int64" Nullable="false" />
+          <Property Name="FileType" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Pets" Relationship="PetSureFileUploadModel.FK_FileUploads_Pets" FromRole="FileUploads" ToRole="Pets" />
+        </EntityType>
+        <EntityType Name="Pets">
+          <Key>
+            <PropertyRef Name="PetID" />
+          </Key>
+          <Property Name="PetID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Enable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FileUploads" Relationship="PetSureFileUploadModel.FK_FileUploads_Pets" FromRole="Pets" ToRole="FileUploads" />
+        </EntityType>
+        <Association Name="FK_FileUploads_Pets">
+          <End Role="Pets" Type="PetSureFileUploadModel.Pets" Multiplicity="1" />
+          <End Role="FileUploads" Type="PetSureFileUploadModel.FileUploads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pets">
+              <PropertyRef Name="PetID" />
+            </Principal>
+            <Dependent Role="FileUploads">
+              <PropertyRef Name="PetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetSureFileUploadModelStoreContainer" CdmEntityContainer="PetSureFileUploadContext">
+          <EntitySetMapping Name="FileUploads">
+            <EntityTypeMapping TypeName="PetSureFileUploadModel.FileUploads">
+              <MappingFragment StoreEntitySet="FileUploads">
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="PetID" ColumnName="PetID" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pets">
+            <EntityTypeMapping TypeName="PetSureFileUploadModel.Pets">
+              <MappingFragment StoreEntitySet="Pets">
+                <ScalarProperty Name="PetID" ColumnName="PetID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

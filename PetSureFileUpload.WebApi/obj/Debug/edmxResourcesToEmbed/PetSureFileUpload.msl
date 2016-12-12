@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PetSureFileUploadModelStoreContainer" CdmEntityContainer="PetSureFileUploadContext">
+    <EntitySetMapping Name="FileUploads">
+      <EntityTypeMapping TypeName="PetSureFileUploadModel.FileUploads">
+        <MappingFragment StoreEntitySet="FileUploads">
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="PetID" ColumnName="PetID" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="PetSureFileUploadModel.Pets">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="PetID" ColumnName="PetID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
